@@ -2,6 +2,10 @@
 #include <vector>
 #include <iostream>
 #include "Component.h"
+#include "TransformComponent.h"
+
+using namespace std;
+
 class Actor : public Component {
 	Actor(const Actor&) = delete;
 	Actor(Actor&&) = delete;
@@ -10,10 +14,12 @@ class Actor : public Component {
 
 private:
 	std::vector<Component*> components;
+	Matrix4 modelMatrix;
 	// START CHANGING THE ACTOR CLASS IN CLASS 5
 
 public:
 	Actor(Component* parent_);
+	//Actor(shared_ptr<Component> parent_);
 	~Actor();
 	virtual bool OnCreate() override;
 	virtual void OnDestroy() override;
@@ -48,8 +54,11 @@ public:
 			}
 		}
 	}
+	
+	Matrix4 GetModelMatrix();
 
 	void ListComponents() const;
 	void RemoveAllComponents();
+	
 };
 

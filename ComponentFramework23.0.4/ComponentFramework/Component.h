@@ -1,4 +1,8 @@
 #pragma once
+#include <memory>
+
+template<typename T>
+using Ref = std::shared_ptr<T>; // Common name convention for shared pointers
 
 class Component {
 public:
@@ -10,5 +14,6 @@ public:
 	virtual void Render() const = 0;
 protected:
 	Component* parent;
+	/// TODO: Add std::string name;
 	bool isCreated;
 };

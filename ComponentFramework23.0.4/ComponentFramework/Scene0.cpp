@@ -12,6 +12,7 @@
 #include "MaterialComponent.h"
 #include "TransformComponent.h"
 #include "LightActor.h"
+#include "CameraActor.h"
 
 
 Scene0::Scene0():camera(nullptr), light(nullptr)  {
@@ -26,14 +27,21 @@ Scene0::~Scene0() {
 bool Scene0::OnCreate() {
 	Debug::Info("Loading assets Scene0: ", __FILE__, __LINE__);
 
-	///camera = new CameraActor(nullptr);
-	///camera->AddComponent<TransformComponent>(nullptr, Vec3(0.0f, 0.0f, -10.0), Quaternion());
-	///camera->OnCreate();
-	///camera->GetProjectionMatrix().print("ProjectionMatrix");
-	///camera->GetViewMatrix().print("ViewMatrix");
+	camera = new CameraActor(nullptr);
+	camera->AddComponent<TransformComponent>(nullptr, Vec3(0.0f, 0.0f, -10.0), Quaternion());
+	camera->OnCreate();
+	camera->GetProjectionMatrix().print("ProjectionMatrix");
+	camera->GetViewMatrix().print("ViewMatrix");
 
 	light = new LightActor(nullptr, LightStyle::DirectionalLight, Vec3(0.0f, 0.0f, 0.0f), Vec4(0.6f, 0.6, 0.6, 0.0f));
 	light->OnCreate();
+
+	mario = new Actor(nullptr);
+	mario->AddComponent<MeshComponent>(nullptr, "meshes/Mario.obj");
+	mario->AddComponent<TransformComponent>(nullptr, Vec3(0, 0, 0), Quaternion(0.0f, Vec3(0, 1, 0)));
+	mario->AddComponent<MaterialComponent>(nullptr, "textures/mario_main.png");
+	mario->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
+	mario->OnCreate();
 
 	return true;
 }
@@ -77,12 +85,14 @@ void Scene0::Render() const {
 	
 	/// This is how we'll do it. 
 
-	//glUseProgram(shader->GetProgram());
-	//glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
-	//glUniformMatrix4fv(shader->GetUniformID("modelMatrix"), 1, GL_FALSE, transform->GetTransformMatrix());
-	//glUniform3fv(shader->GetUniformID("lightPos"), 1, light->GetPosition());
-	//glBindTexture(GL_TEXTURE_2D, texture->GetTextureID());
-	//mesh->Render(GL_TRIANGLES);
+	glUseProgram(mario->GetComponent<ShaderComponent>()->GetProgram());
+	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
+	glUniformMatrix4fv(mario->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, mario->GetModelMatrix());
+	glUniform3fv(mario->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
+	glBindTexture(GL_TEXTURE_2D, mario->GetComponent<MaterialComponent>()->GetTextureID());
+	mario->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
+
+	// DO THE SAME FOR HAMMER 
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUseProgram(0);

@@ -1,4 +1,5 @@
 #include "Actor.h"
+#include "MMath.h"
 
 Actor::Actor(Component* parent_):Component(parent_) {}
 
@@ -39,4 +40,22 @@ void Actor::RemoveAllComponents() {
 	components.clear();
 }
 
-// add get model matrix
+Matrix4 Actor::GetModelMatrix()
+{
+	TransformComponent* ptr = GetComponent<TransformComponent>();
+	if (ptr == nullptr)
+	{
+		return modelMatrix; // loads identity matrix -- TODO: can we do it in a safer way?
+	}
+	
+	modelMatrix = ptr->GetTransformMatrix();
+
+	/*if (parent != nullptr)
+	{
+		Matrix4 parentModelMatrix = dynamic_cast<Actor*>(parent)->GetModelMatrix();
+		Matrix4 childModelMatrix =  parentModelMatrix * modelMatrix;
+		return childModelMatrix;
+	}*/
+	
+	return modelMatrix;
+}

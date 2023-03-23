@@ -1,1 +1,22 @@
-﻿
+﻿  Actor.cpp
+  Debug.cpp
+  LightActor.cpp
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\LightActor.h(3,10): fatal  error C1083: Cannot open include file: 'Vector.h': No such file or directory
+  MaterialComponent.cpp
+  MeshComponent.cpp
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\MeshComponent.h(5,10): fatal  error C1083: Cannot open include file: 'Vector.h': No such file or directory
+  SceneManager.cpp
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Scene0.h(4,10): fatal  error C1083: Cannot open include file: 'Vector.h': No such file or directory
+  Main.cpp
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Main.cpp(13,30): error C2338: static_assert failed: 'Are you ready for 64-bit build?'
+  Scene0.cpp
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Scene0.h(4,10): fatal  error C1083: Cannot open include file: 'Vector.h': No such file or directory
+  ShaderComponent.cpp
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\ShaderComponent.cpp(67,36): warning C4267: '=': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\ShaderComponent.cpp(82,36): warning C4267: '=': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Timer.cpp
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Timer.cpp(55,41): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+  TransformComponent.cpp
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\TransformComponent.h(3,10): fatal  error C1083: Cannot open include file: 'Matrix.h': No such file or directory
+  Window.cpp
+  Generating Code...
