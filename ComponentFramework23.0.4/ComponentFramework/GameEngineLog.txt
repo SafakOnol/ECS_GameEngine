@@ -1,0 +1,11 @@
+Thu Mar 23 15:40:20 2023
+[INFO]: Starting the SceneManager
+[INFO]: OpenGL version: 4.6.0 NVIDIA 527.56
+[INFO]: Graphics card vendor NVIDIA Corporation
+[INFO]: Graphics card name NVIDIA GeForce RTX 3060 Laptop GPU/PCIe/SSE2
+[INFO]: GLSL Version 4.60 NVIDIA
+[INFO]: Created Scene0: 
+[INFO]: Loading assets Scene0: 
+[INFO]: Deleting assets Scene0: 
+[INFO]: Deleted Scene0: 
+[INFO]: Deleting the SceneManager
