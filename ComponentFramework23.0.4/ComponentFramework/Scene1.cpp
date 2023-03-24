@@ -37,19 +37,19 @@ bool Scene1::OnCreate() {
 	light = new LightActor(nullptr, LightStyle::DirectionalLight, Vec3(0.0f, 0.0f, 0.0f), Vec4(0.6f, 0.6, 0.6, 0.0f));
 	light->OnCreate();
 
-	mario = new Actor(nullptr);
-	mario->AddComponent<MeshComponent>(nullptr, "meshes/Mario.obj");
-	mario->AddComponent<TransformComponent>(nullptr, Vec3(0, 0, 0), Quaternion(0.0f, Vec3(0, 1, 0)));
-	mario->AddComponent<MaterialComponent>(nullptr, "textures/mario_main.png");
-	mario->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
-	mario->OnCreate();
+	checkerBoard = new Actor(nullptr);
+	checkerBoard->AddComponent<MeshComponent>(nullptr, "meshes/Plane.obj");
+	checkerBoard->AddComponent<TransformComponent>(nullptr, Vec3(0, 0, -2.2), Quaternion(0.0f, Vec3(0, 0, 0)));
+	checkerBoard->AddComponent<MaterialComponent>(nullptr, "textures/8x8_checkered_board.png");
+	checkerBoard->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
+	checkerBoard->OnCreate();
 
-	hammer = new Actor(mario);
-	hammer->AddComponent<MeshComponent>(nullptr, "meshes/Hammer.obj");
-	hammer->AddComponent<TransformComponent>(nullptr, Vec3(1, 0, 0), Quaternion(0.0f, Vec3(0, 1, 0)));
-	hammer->AddComponent<MaterialComponent>(nullptr, "textures/hammer_BaseColor.png");
-	hammer->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
-	hammer->OnCreate();
+	checkerPiece = new Actor(checkerBoard);
+	checkerPiece->AddComponent<MeshComponent>(nullptr, "meshes/CheckerPiece.obj");
+	checkerPiece->AddComponent<TransformComponent>(nullptr, Vec3(-3.1f, -3.0f, 0.0f), Quaternion(0.0f, Vec3(0, 0, 0)), Vec3(0.14f, 0.14f, 0.14f));
+	checkerPiece->AddComponent<MaterialComponent>(nullptr, "textures/redCheckerPiece.png");
+	checkerPiece->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
+	checkerPiece->OnCreate();
 
 	return true;
 }
@@ -81,8 +81,8 @@ void Scene1::HandleEvents(const SDL_Event &sdlEvent) {
 void Scene1::Update(const float deltaTime) {
 	static float rot = 0.0f;
 	rot += deltaTime * 50.0f;
-	TransformComponent* temp = mario->GetComponent<TransformComponent>();
-	temp->SetOrientation(QMath::angleAxisRotation(rot, Vec3(1.0, 1.0f, 0.0f)));
+	//TransformComponent* temp = checkerBoard->GetComponent<TransformComponent>();
+	//temp->SetOrientation(QMath::angleAxisRotation(rot, Vec3(1.0, 1.0f, 0.0f)));
 }
 
 void Scene1::Render() const {
@@ -94,21 +94,21 @@ void Scene1::Render() const {
 	
 	/// This is how we'll do it. 
 
-	glUseProgram(mario->GetComponent<ShaderComponent>()->GetProgram());
+	glUseProgram(checkerBoard->GetComponent<ShaderComponent>()->GetProgram());
 	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
-	glUniformMatrix4fv(mario->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, mario->GetModelMatrix());
-	glUniform3fv(mario->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
-	glBindTexture(GL_TEXTURE_2D, mario->GetComponent<MaterialComponent>()->GetTextureID());
-	mario->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
+	glUniformMatrix4fv(checkerBoard->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, checkerBoard->GetModelMatrix());
+	glUniform3fv(checkerBoard->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
+	glBindTexture(GL_TEXTURE_2D, checkerBoard->GetComponent<MaterialComponent>()->GetTextureID());
+	checkerBoard->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
 
 	// DO THE SAME FOR HAMMER 
 
-	glUseProgram(hammer->GetComponent<ShaderComponent>()->GetProgram());
+	glUseProgram(checkerPiece->GetComponent<ShaderComponent>()->GetProgram());
 	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
-	glUniformMatrix4fv(hammer->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, hammer->GetModelMatrix());
-	glUniform3fv(hammer->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
-	glBindTexture(GL_TEXTURE_2D, hammer->GetComponent<MaterialComponent>()->GetTextureID());
-	hammer->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
+	glUniformMatrix4fv(checkerPiece->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, checkerPiece->GetModelMatrix());
+	glUniform3fv(checkerPiece->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
+	glBindTexture(GL_TEXTURE_2D, checkerPiece->GetComponent<MaterialComponent>()->GetTextureID());
+	checkerPiece->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUseProgram(0);

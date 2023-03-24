@@ -16,8 +16,8 @@ private:
 	CameraActor* camera;
 	LightActor* light;
 
-	Actor* mario;
-	Actor* hammer;
+	Actor* checkerBoard;
+	Actor* checkerPiece;
 
 public:
 	explicit Scene1();

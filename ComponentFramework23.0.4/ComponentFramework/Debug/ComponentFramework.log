@@ -1,4 +1,4 @@
-﻿  Scene0.cpp
+﻿  Scene1.cpp
 C:\GameDev\MathLibrary\include\MMath.h(18,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\GameDev\MathLibrary\include\MMath.h(19,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\GameDev\MathLibrary\include\MMath.h(49,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -11,5 +11,6 @@ C:\GameDev\MathLibrary\include\QMath.h(91,15): warning C4244: 'initializing': co
 C:\GameDev\MathLibrary\include\QMath.h(103,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\GameDev\MathLibrary\include\AAMath.h(12,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\GameDev\MathLibrary\include\AAMath.h(17,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Scene0.cpp(37,115): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Scene1.cpp(37,115): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Scene1.cpp(42,107): warning C4305: 'argument': truncation from 'double' to 'float'
   ComponentFramework.vcxproj -> C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\Debug\ComponentFramework.exe
