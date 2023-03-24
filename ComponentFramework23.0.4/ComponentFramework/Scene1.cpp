@@ -44,12 +44,21 @@ bool Scene1::OnCreate() {
 	checkerBoard->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
 	checkerBoard->OnCreate();
 
-	checkerPiece = new Actor(checkerBoard);
-	checkerPiece->AddComponent<MeshComponent>(nullptr, "meshes/CheckerPiece.obj");
-	checkerPiece->AddComponent<TransformComponent>(nullptr, Vec3(-3.1f, -3.0f, 0.0f), Quaternion(0.0f, Vec3(0, 0, 0)), Vec3(0.14f, 0.14f, 0.14f));
-	checkerPiece->AddComponent<MaterialComponent>(nullptr, "textures/redCheckerPiece.png");
-	checkerPiece->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
-	checkerPiece->OnCreate();
+	checkerPiece01 = new Actor(checkerBoard);
+	checkerPiece01->AddComponent<MeshComponent>(nullptr, "meshes/CheckerPiece.obj");
+	checkerPiece01->AddComponent<TransformComponent>(nullptr, Vec3(-4.4f, -3.05f, 0.0f), Quaternion(0.0f, Vec3(0, 0, 0)), Vec3(0.14f, 0.14f, 0.14f));
+	checkerPiece01->AddComponent<MaterialComponent>(nullptr, "textures/redCheckerPiece.png");
+	checkerPiece01->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
+	checkerPiece01->OnCreate();
+
+	checkerPiece02 = new Actor(checkerBoard);
+	checkerPiece02->AddComponent<MeshComponent>(nullptr, "meshes/CheckerPiece.obj");
+	checkerPiece02->AddComponent<TransformComponent>(nullptr, Vec3(3.05f, -3.05f, 0.0f), Quaternion(0.0f, Vec3(0, 0, 0)), Vec3(0.14f, 0.14f, 0.14f));
+	checkerPiece02->AddComponent<MaterialComponent>(nullptr, "textures/blackCheckerPiece.png");
+	checkerPiece02->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
+	checkerPiece02->OnCreate();
+
+
 
 	return true;
 }
@@ -103,12 +112,19 @@ void Scene1::Render() const {
 
 	// DO THE SAME FOR HAMMER 
 
-	glUseProgram(checkerPiece->GetComponent<ShaderComponent>()->GetProgram());
+	glUseProgram(checkerPiece01->GetComponent<ShaderComponent>()->GetProgram());
 	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
-	glUniformMatrix4fv(checkerPiece->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, checkerPiece->GetModelMatrix());
-	glUniform3fv(checkerPiece->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
-	glBindTexture(GL_TEXTURE_2D, checkerPiece->GetComponent<MaterialComponent>()->GetTextureID());
-	checkerPiece->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
+	glUniformMatrix4fv(checkerPiece01->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, checkerPiece01->GetModelMatrix());
+	glUniform3fv(checkerPiece01->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
+	glBindTexture(GL_TEXTURE_2D, checkerPiece01->GetComponent<MaterialComponent>()->GetTextureID());
+	checkerPiece01->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
+
+	glUseProgram(checkerPiece02->GetComponent<ShaderComponent>()->GetProgram());
+	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
+	glUniformMatrix4fv(checkerPiece02->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, checkerPiece02->GetModelMatrix());
+	glUniform3fv(checkerPiece02->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
+	glBindTexture(GL_TEXTURE_2D, checkerPiece02->GetComponent<MaterialComponent>()->GetTextureID());
+	checkerPiece02->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUseProgram(0);
