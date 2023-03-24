@@ -50,12 +50,12 @@ Matrix4 Actor::GetModelMatrix()
 	
 	modelMatrix = ptr->GetTransformMatrix();
 
-	/*if (parent != nullptr)
+	if (parent != nullptr)
 	{
 		Matrix4 parentModelMatrix = dynamic_cast<Actor*>(parent)->GetModelMatrix();
 		Matrix4 childModelMatrix =  parentModelMatrix * modelMatrix;
 		return childModelMatrix;
-	}*/
+	}
 	
 	return modelMatrix;
 }

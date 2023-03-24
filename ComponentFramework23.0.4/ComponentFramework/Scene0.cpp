@@ -43,6 +43,13 @@ bool Scene0::OnCreate() {
 	mario->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
 	mario->OnCreate();
 
+	hammer = new Actor(mario);
+	hammer->AddComponent<MeshComponent>(nullptr, "meshes/Hammer.obj");
+	hammer->AddComponent<TransformComponent>(nullptr, Vec3(1, 0, 0), Quaternion(0.0f, Vec3(0, 1, 0)));
+	hammer->AddComponent<MaterialComponent>(nullptr, "textures/hammer_BaseColor.png");
+	hammer->AddComponent<ShaderComponent>(nullptr, "shaders/texturevert.glsl", "shaders/texturefrag.glsl");
+	hammer->OnCreate();
+
 	return true;
 }
 
@@ -93,6 +100,13 @@ void Scene0::Render() const {
 	mario->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
 
 	// DO THE SAME FOR HAMMER 
+
+	glUseProgram(hammer->GetComponent<ShaderComponent>()->GetProgram());
+	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
+	glUniformMatrix4fv(hammer->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, hammer->GetModelMatrix());
+	glUniform3fv(hammer->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
+	glBindTexture(GL_TEXTURE_2D, hammer->GetComponent<MaterialComponent>()->GetTextureID());
+	hammer->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUseProgram(0);

@@ -1,7 +1,4 @@
-﻿  Actor.cpp
-  CameraActor.cpp
-  LightActor.cpp
-  Scene0.cpp
+﻿  Scene0.cpp
 C:\GameDev\MathLibrary\include\MMath.h(18,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\GameDev\MathLibrary\include\MMath.h(19,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\GameDev\MathLibrary\include\MMath.h(49,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -13,5 +10,4 @@ C:\GameDev\MathLibrary\include\QMath.h(90,15): warning C4244: 'initializing': co
 C:\GameDev\MathLibrary\include\QMath.h(91,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\GameDev\MathLibrary\include\QMath.h(103,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Scene0.cpp(36,115): warning C4305: 'argument': truncation from 'double' to 'float'
-  Generating Code...
   ComponentFramework.vcxproj -> C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\Debug\ComponentFramework.exe
