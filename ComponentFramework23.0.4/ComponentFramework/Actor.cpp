@@ -1,5 +1,5 @@
 #include "Actor.h"
-#include "MMath.h"
+#include <MMath.h>
 
 Actor::Actor(Component* parent_):Component(parent_) {}
 
@@ -52,7 +52,8 @@ Matrix4 Actor::GetModelMatrix()
 
 	if (parent != nullptr)
 	{
-		Matrix4 parentModelMatrix = dynamic_cast<Actor*>(parent)->GetModelMatrix();
+		// it's a weak cast, works fine with inheritence - TODO check with Scott!
+		Matrix4 parentModelMatrix = dynamic_cast<Actor*>(parent)->GetModelMatrix(); 
 		Matrix4 childModelMatrix =  parentModelMatrix * modelMatrix;
 		return childModelMatrix;
 	}

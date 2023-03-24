@@ -3,8 +3,9 @@
 #include <SDL.h>
 #include "Debug.h"
 #include "Scene0.h"
-#include "MMath.h"
-#include "QMath.h"
+#include <MMath.h>
+#include <QMath.h>
+#include <AAMath.h>
 #include "Debug.h"
 #include "Actor.h"
 #include "MeshComponent.h"
@@ -80,7 +81,8 @@ void Scene0::HandleEvents(const SDL_Event &sdlEvent) {
 void Scene0::Update(const float deltaTime) {
 	static float rot = 0.0f;
 	rot += deltaTime * 50.0f;
-	
+	TransformComponent* temp = mario->GetComponent<TransformComponent>();
+	temp->SetOrientation(QMath::angleAxisRotation(rot, Vec3(1.0, 1.0f, 0.0f)));
 }
 
 void Scene0::Render() const {
