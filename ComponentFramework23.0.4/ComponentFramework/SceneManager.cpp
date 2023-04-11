@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Scene0.h"
 #include "Scene1.h"
+#include "Scene2.h"
 
 SceneManager::SceneManager(): 
 	currentScene(nullptr), window(nullptr), timer(nullptr),
@@ -45,7 +46,7 @@ bool SceneManager::Initialize(std::string name_, int width_, int height_) {
 	}
 
 	/********************************   Default first scene   ***********************/
-	BuildNewScene(SCENE_NUMBER::SCENE1);
+	BuildNewScene(SCENE_NUMBER::SCENE2);
 	
 	return true;
 }
@@ -108,6 +109,11 @@ void SceneManager::BuildNewScene(SCENE_NUMBER scene) {
 
 	case SCENE_NUMBER::SCENE1:
 		currentScene = new Scene1();
+		status = currentScene->OnCreate();
+		break;
+
+	case SCENE_NUMBER::SCENE2:
+		currentScene = new Scene2();
 		status = currentScene->OnCreate();
 		break;
 

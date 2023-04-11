@@ -19,6 +19,7 @@ private:
 	Actor* checkerBoard;
 	Actor* checkerPiece01;
 	Actor* checkerPiece02;
+	Actor* selectedChecker;
 
 public:
 	explicit Scene1();
@@ -51,6 +52,17 @@ public:
 //	For added marks try the following : (Up to 5 more)
 //	Extra : There must be a better way to manage all the pieces.
 //	Extra : Can you move any piece ? How would you do that ?
+
+
+/*  SAFAK ONOL ASSIGNMENT 1 */
+
+// Step 1: done
+// Step 2: done
+// Step 3: done
+// Step 4: done
+// Extra: there surely is, it was gonna be too time consuming and painful so I skipped it
+// Extra: I can move the pieces with wasd, and change the controlled checker with space. Try it, fun!
+
 
 
 #endif // SCENE1_H

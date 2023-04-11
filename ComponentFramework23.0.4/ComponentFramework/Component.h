@@ -2,7 +2,7 @@
 #include <memory>
 
 template<typename T>
-using Ref = std::shared_ptr<T>; // Common name convention for shared pointers
+using Ref = std::shared_ptr<T>; 
 
 class Component {
 public:
