@@ -15,7 +15,8 @@
 #include "LightActor.h"
 #include "CameraActor.h"
 #include <cstdlib>
-
+#include <string>
+#include <vector>
 
 Scene2::Scene2():camera(nullptr), light(nullptr)  {
 	Debug::Info("Created Scene2: ", __FILE__, __LINE__);
@@ -31,7 +32,7 @@ bool Scene2::OnCreate() {
 	Debug::Info("Loading assets Scene2: ", __FILE__, __LINE__);
 
 	camera = new CameraActor(nullptr);
-	camera->AddComponent<TransformComponent>(nullptr, Vec3(0.0f, 0.0f, -7.0), Quaternion());
+	camera->AddComponent<TransformComponent>(nullptr, Vec3(0.0f, 0.0f, -15.0), Quaternion());
 	camera->OnCreate();
 	camera->GetProjectionMatrix().print("ProjectionMatrix");
 	camera->GetViewMatrix().print("ViewMatrix");
@@ -45,7 +46,7 @@ bool Scene2::OnCreate() {
 	// Board 
 	shared_ptr<Actor>checkerBoard = shared_ptr<Actor>(new Actor(nullptr));
 	checkerBoard->AddComponent<MeshComponent>(nullptr, "meshes/Plane.obj");
-	checkerBoard->AddComponent<TransformComponent>(nullptr, Vec3(0, 0, 0), Quaternion(), Vec3(0.5f, 0.5f, 0.5f));
+	checkerBoard->AddComponent<TransformComponent>(nullptr, Vec3(0, 0, 0), Quaternion(0.0f, Vec3(0.0f, 0.0f, 0.0f)), Vec3(1.0f, 1.0f, 1.0f));
 	checkerBoard->AddComponent<MaterialComponent>(nullptr, "textures/8x8_checkered_board.png");
 	checkerBoard->AddComponent<ShaderComponent>(shaderPointer);
 	checkerBoard->OnCreate();
@@ -54,73 +55,87 @@ bool Scene2::OnCreate() {
 	// Checker Pieces
 	// 
 	// Meshes and Textures for Checker Pieces
+	
 
 	shared_ptr<MeshComponent> checkerPieceMesh = shared_ptr<MeshComponent>(new MeshComponent(nullptr, "meshes/CheckerPiece.obj"));
 	shared_ptr<MaterialComponent> redCheckerPiece = shared_ptr<MaterialComponent>(new MaterialComponent(nullptr, "textures/redCheckerPiece.png"));
 	shared_ptr<MaterialComponent> blackCheckerPiece = shared_ptr<MaterialComponent>(new MaterialComponent(nullptr, "textures/blackCheckerPiece.png"));
 
-	// Checker Piece initialize at
+	// create a vector to hold positions for each square in board
+	std::vector<std::vector<Vec3>> boardPosition(8, std::vector<Vec3>(8));
 
-	float checkerPieceX = -4.4f;
-	float checkerPieceY = -4.3f;
+	int BOARD_SIZE = 8; // 8 pieces on each side
+	float SQUARE_SIZE = 1.0f; // a square is one piece of it
 
-	// Use a for loop to create the checker pieces and attach their components
+	// get length of the mesh from vertex values
+	float boardX = checkerBoard->GetComponent<MeshComponent>()->GetMeshLength(); 
+	float boardY = checkerBoard->GetComponent<MeshComponent>()->GetMeshHeight(); 
+	Vec3 boardCenter = checkerBoard->GetComponent<MeshComponent>()->GetOrigin();
+	std::cout << boardCenter << std::endl;
 
-	for (int i = 0; i < 12; i++)
+	// calculate the size of each square 
+	float checkerSquareX = boardX / BOARD_SIZE;
+	float checkerSquareY = boardY / BOARD_SIZE;
+
+	// adjust the offset for the position values of squares
+	float BOARD_OFFSET_X = boardCenter.x - (checkerSquareX * 3.5); 
+	float BOARD_OFFSET_Y = boardCenter.y -(checkerSquareY * 3.5);
+
+	for (int i = 0; i < BOARD_SIZE; i++) 
 	{
-		shared_ptr<Actor>checkerRed = shared_ptr<Actor>(new Actor(checkerBoard));
+		for (int j = 0; j < BOARD_SIZE; j++) 
+		{
+			float x = BOARD_OFFSET_X + j * checkerSquareX;
+			float y = BOARD_OFFSET_Y + i * checkerSquareY;
+			float z = 0.0f;
+			boardPosition[i][j] = Vec3(x, y, z);
+			char col = 'A' + j;
+			int row = 8 - i;
+			std::cout << col << row << " ";
 
-		/*checkerRed->AddComponent<TransformComponent>
-			(nullptr, Vec3(checkerPieceX, checkerPieceY, 0.0f), Quaternion(0.0f, Vec3(0, 0, 0)), Vec3(0.14f, 0.14f, 0.14f));*/
-		checkerRed->AddComponent<TransformComponent>
-			(nullptr, Vec3(checkerPieceX, checkerPieceY, 0.0f), Quaternion(), Vec3(0.15f, 0.15f, 0.15f));
-		checkerRed->AddComponent<MeshComponent>(checkerPieceMesh);
-		checkerRed->AddComponent<MaterialComponent>(redCheckerPiece);
-		checkerRed->AddComponent<ShaderComponent>(shaderPointer);
-		checkerRed->OnCreate();
-		actors.push_back(checkerRed);
+			if ((i % 2 == 0 && j % 2 == 1) || (i % 2 == 1 && j % 2 == 0)) // place the checkers according to rules of the game
+			{
+				shared_ptr<Actor>checkerPiece = shared_ptr<Actor>(new Actor(checkerBoard));
+				checkerPiece->AddComponent<MeshComponent>(checkerPieceMesh);
 
-		checkerPieceX += 2.48f;
+				if (BOARD_SIZE - i < (0.5 * BOARD_SIZE))
+				{
+					checkerPiece->AddComponent<MaterialComponent>(blackCheckerPiece);
+				}
+				else if (BOARD_SIZE - i > ((0.5 * BOARD_SIZE) + SQUARE_SIZE))
+				{
+					checkerPiece->AddComponent<MaterialComponent>(redCheckerPiece);
+				}
+				else
+				{
+					continue;
+				}
 
-		if (i == 3) {
-			checkerPieceY = -3;
-			checkerPieceX = -3.1;
+				checkerPiece->AddComponent<TransformComponent>
+					(nullptr, boardPosition[i][j], Quaternion(), Vec3(0.15f, 0.15f, 0.15f));
+				checkerPiece->AddComponent<ShaderComponent>(shaderPointer);
+				checkerPiece->OnCreate();
+				actors.push_back(checkerPiece);
+				//std::cin.get();
+			}
 		}
+		std::cout << std::endl;
+		
+	};
 
-		if (i == 7) {
-			checkerPieceY = -1.8;
-			checkerPieceX = -4.4;
-		}
-	}
+	//std::cin.get();
+	// print the Poistion of the squares
 
-	checkerPieceX = -3.1f;
-	checkerPieceY = 1.9f;
-
-	for (int i = 0; i < 12; i++)
-	{
-		shared_ptr<Actor>checkerBlack = shared_ptr<Actor>(new Actor(checkerBoard));
-
-		checkerBlack->AddComponent<TransformComponent>
-			(nullptr, Vec3(checkerPieceX, checkerPieceY, 0.0f), Quaternion(), Vec3(0.15f, 0.15f, 0.15f));
-		checkerBlack->AddComponent<MeshComponent>(checkerPieceMesh);
-		checkerBlack->AddComponent<MaterialComponent>(blackCheckerPiece);
-		checkerBlack->AddComponent<ShaderComponent>(shaderPointer);
-		checkerBlack->OnCreate();
-		actors.push_back(checkerBlack);
-
-		checkerPieceX += 2.48f;
-
-		if (i == 3) {
-			checkerPieceY = 3.2f;
-			checkerPieceX = -4.4f;
-		}
-
-		if (i == 7) {
-			checkerPieceY = 4.4f;
-			checkerPieceX = -3.1f;
-		}
-				
-	}
+	//for (int i = 0; i < BOARD_SIZE; i++) 
+	//{
+	//	for (int j = 0; j < BOARD_SIZE; j++) 
+	//	{
+	//		char col = 'A' + j;	
+	//		int row = 8 - i;
+	//		std::cout << col << row << " " << boardPosition[i][j].x << ", " << boardPosition[i][j].y << ", " << boardPosition[i][j].z << std::endl;
+	//	}
+	//	//std::cin.get();
+	//};
 
 	return true;
 
@@ -157,10 +172,9 @@ void Scene2::HandleEvents(const SDL_Event &sdlEvent) {
 
 void Scene2::Update(const float deltaTime) {
 	// rotate the checkerboard with checkers on it
-	/*static float rot = 0.0f;
+	static float rot = 0.0f;
 	rot += deltaTime * 50.0f;
-	TransformComponent* temp = checkerBoard->GetComponent<TransformComponent>();
-	temp->SetOrientation(QMath::angleAxisRotation(rot, Vec3(1.0, 1.0f, 0.0f)));*/
+
 }
 
 void Scene2::Render() const {

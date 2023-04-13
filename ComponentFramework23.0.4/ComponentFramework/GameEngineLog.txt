@@ -1,4 +1,4 @@
-Mon Apr 10 21:11:15 2023
+Thu Apr 13 00:47:17 2023
 [INFO]: Starting the SceneManager
 [INFO]: OpenGL version: 4.6.0 NVIDIA 527.56
 [INFO]: Graphics card vendor NVIDIA Corporation
@@ -39,31 +39,3 @@ Mon Apr 10 21:11:15 2023
 [INFO]: Loading assets for Actor: 
 [INFO]: Loading assets for Actor: 
 [INFO]: Loading assets for Actor: 
-[INFO]: Deleting assets Scene2: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleting assets for Actor: 
-[INFO]: Deleted Scene2: 
-[INFO]: Deleting the SceneManager

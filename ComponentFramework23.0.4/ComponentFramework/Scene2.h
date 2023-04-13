@@ -17,9 +17,7 @@ private:
 	LightActor* light;
 
 	Actor* checkerBoard;
-	Actor* checkerRed;
-	Actor* checkerBlack;
-	Actor* selectedChecker;
+	Actor* checkerPiece;
 
 public:
 	explicit Scene2();

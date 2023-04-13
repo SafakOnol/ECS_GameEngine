@@ -31,6 +31,19 @@ void MeshComponent::LoadModel(const char* filename) {
     normals.clear();
 	uvCoords.clear();
 
+    // get the data from the file
+
+    unsigned int numVertices = 0, numNormals = 0, numUVCoords = 0;
+
+    float minX = std::numeric_limits<float>::max();
+    float maxX = std::numeric_limits<float>::min();
+    float minY = std::numeric_limits<float>::max();
+    float maxY = std::numeric_limits<float>::min();
+    float minZ = std::numeric_limits<float>::max();
+    float maxZ = std::numeric_limits<float>::min();
+
+    // Load .obj file
+
     if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filename)) {
         throw std::runtime_error(warn + err);
     }
@@ -40,11 +53,36 @@ void MeshComponent::LoadModel(const char* filename) {
             vertex.x = attrib.vertices[3 * index.vertex_index + 0];
             vertex.y = attrib.vertices[3 * index.vertex_index + 1];
             vertex.z = attrib.vertices[3 * index.vertex_index + 2];
+
+            // get the min and max values for the bounding box
+
+            if (vertex.x < minX) {
+                minX = vertex.x;
+            }
+            if (vertex.x > maxX) {
+                maxX = vertex.x;
+            }
+            if (vertex.y < minY) {
+                minY = vertex.y;
+            }
+            if (vertex.y > maxY) {
+                maxY = vertex.y;
+            }
+            if (vertex.z < minZ) {
+                minZ = vertex.z;
+            }
+            if (vertex.z > maxZ) {
+                maxZ = vertex.z;
+            }
+
+            // get the normals
             
             Vec3 normal{};
             normal.x = attrib.normals[3 * index.normal_index + 0];
             normal.y = attrib.normals[3 * index.normal_index + 1];
             normal.z = attrib.normals[3 * index.normal_index + 2];
+
+            // get the texture coordinates
 
             Vec2 uvCoord{};
             uvCoord.x = attrib.texcoords[2 * index.texcoord_index + 0];
@@ -55,6 +93,18 @@ void MeshComponent::LoadModel(const char* filename) {
             uvCoords.push_back(uvCoord);
         }
     } 
+
+    length = maxX - minX;
+    height = maxY - minY;
+    depth = maxZ - minZ;
+    origin = Vec3 ((minX + maxX) / 2.0f, (minY + maxY) / 2.0f, (minZ + maxZ) / 2.0f);
+
+    /*std::cout <<    "Loaded " << filename << ": " << numVertices << 
+                    " vertices, " << numNormals << " normals, " << numUVCoords << 
+                    " UV coordinates, Length: " << length << ", Height: " << height << 
+                    ", Depth: " << depth << std::endl;*/
+
+    
 }
 
 void MeshComponent::StoreMeshData(GLenum drawmode_) {

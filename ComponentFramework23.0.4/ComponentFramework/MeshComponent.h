@@ -19,6 +19,11 @@ private:
 	size_t dataLength;
 	GLenum drawmode;
 
+	float length = 0.0f;
+	float height = 0.0f;
+	float depth = 0.0f;
+	Vec3 origin = Vec3(0.0f, 0.0f, 0.0f);
+
 	/// Private helper methods
 	void LoadModel(const char* filename);
 	void StoreMeshData(GLenum drawmode_);
@@ -32,6 +37,10 @@ public:
 	void Update(const float deltaTime);
 	void Render() const;
 	void Render(GLenum drawmode) const;
+
+	float GetMeshLength() const { return length; }
+	float GetMeshHeight() const { return height; }
+	Vec3 GetOrigin() const { return origin; }
 	
 };
 
