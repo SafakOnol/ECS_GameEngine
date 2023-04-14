@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include <Vector.h>
 #include <Matrix.h>
+#include <QMath.h>
 using namespace MATH;
 
 /// Forward declarations 
@@ -18,6 +19,7 @@ private:
 
 	Actor* checkerBoard;
 	Actor* checkerPiece;
+
 
 public:
 	explicit Scene2();

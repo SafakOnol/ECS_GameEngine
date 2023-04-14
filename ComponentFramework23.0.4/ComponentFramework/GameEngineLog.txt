@@ -1,4 +1,4 @@
-Thu Apr 13 00:47:17 2023
+Thu Apr 13 20:49:46 2023
 [INFO]: Starting the SceneManager
 [INFO]: OpenGL version: 4.6.0 NVIDIA 527.56
 [INFO]: Graphics card vendor NVIDIA Corporation
@@ -7,7 +7,6 @@ Thu Apr 13 00:47:17 2023
 [INFO]: Created Scene2: 
 [INFO]: Loading assets Scene2: 
 [INFO]: Loading assets for Actor: 
-[INFO]: Loading assets for Actor: 
 [INFO]: Uniforms:
 "lightPos" loc:3
 "modelMatrix" loc:2
@@ -15,6 +14,7 @@ Thu Apr 13 00:47:17 2023
 "projection" loc:-1
 "view" loc:-1
 
+[INFO]: Loading assets for Actor: 
 [INFO]: Loading assets for Actor: 
 [INFO]: Loading assets for Actor: 
 [INFO]: Loading assets for Actor: 
