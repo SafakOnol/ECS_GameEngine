@@ -30,6 +30,8 @@ public:
 	virtual void Update(const float deltaTime);
 	virtual void Render() const;
 	virtual void HandleEvents(const SDL_Event &sdlEvent);
+	/*void DrawMeshOverlay(float r, float g, float b, float a) const;
+	int Pick(int x, int y);*/
 
 	
 };
