@@ -28,8 +28,7 @@ public:
 	template<typename ComponentTemplate, typename ... Args>
 	void AddComponent(const char* name, Args&& ... args_) 
 	{
-		Ref<ComponentTemplate> t = std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...);
-		componentCatalog[name] = t;
+		componentCatalog[name] = std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...);
 	}
 
 	template<typename ComponentTemplate>
@@ -37,7 +36,8 @@ public:
 	{
 		auto id = componentCatalog.find(name); // find returns an iterator to the element if found, otherwise it returns the end of the map
 #ifdef _DEBUG
-		if (id == componentCatalog.end()) {
+		if (id == componentCatalog.end()) 
+		{
 			Debug::Error("Can't fint requested component", __FILE__, __LINE__);
 			return Ref<ComponentTemplate>(nullptr); 
 		}

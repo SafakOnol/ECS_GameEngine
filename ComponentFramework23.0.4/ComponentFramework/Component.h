@@ -2,7 +2,13 @@
 #include <memory>
 
 template<typename T>
-using Ref = std::shared_ptr<T>; 
+using Ref = std::shared_ptr<T>; // Ref is a shared pointer to a template type
+//using MeshRef = std::shared_ptr<Mesh>;
+//using ShaderRef = std::shared_ptr<Shader>;
+//using TextureRef = std::shared_ptr<Texture>;
+//using MaterialRef = std::shared_ptr<Material>;
+//using ActorRef = std::shared_ptr<Actor>;
+// TODO: ASK ABOUT THIS
 
 class Component {
 public:

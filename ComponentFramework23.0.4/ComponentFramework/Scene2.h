@@ -17,8 +17,8 @@ private:
 	CameraActor* camera;
 	LightActor* light;
 
-	Actor* checkerBoard;
-	Actor* checkerPiece;
+	//Actor* checkerBoard;
+	//Actor* checkerPiece;
 
 
 public:
@@ -29,11 +29,7 @@ public:
 	virtual void OnDestroy();
 	virtual void Update(const float deltaTime);
 	virtual void Render() const;
-	virtual void HandleEvents(const SDL_Event &sdlEvent);
-	/*void DrawMeshOverlay(float r, float g, float b, float a) const;
-	int Pick(int x, int y);*/
-
-	
+	virtual void HandleEvents(const SDL_Event &sdlEvent);	
 };
 
 #endif // SCENE2_H

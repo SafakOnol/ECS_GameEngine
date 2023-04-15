@@ -62,7 +62,7 @@ public:
 	{
 		for (auto component : components)
 		{
-			if (dynamic_cast<ComponentTemplate*>(component.get()))
+			if (dynamic_cast<ComponentTemplate*>(component.get()) != nullptr)
 			{
 				/// This is a dynamic cast designed for shared_ptr's
 				/// https://en.cppreference.com/w/cpp/memory/shared_ptr/pointer_cast
@@ -77,7 +77,7 @@ public:
 	{
 		for (unsigned int i = 0; i < components.size(); i++)
 		{
-			if (dynamic_cast<ComponentTemplate*>(components[i]))
+			if (dynamic_cast<ComponentTemplate*>(components[i]) != nullptr) // components[i].get() ???
 			{
 				components.erase(components.begin() + i);
 				break;

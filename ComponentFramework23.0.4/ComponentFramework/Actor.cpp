@@ -19,7 +19,7 @@ Actor::~Actor()
 bool Actor::OnCreate() 
 {
 	if (isCreated) return true;
-	Debug::Info("Loading assets for Actor: ", __FILE__, __LINE__);
+	//Debug::Info("Loading assets for Actor: ", __FILE__, __LINE__);
 	for (auto component : components) 
 	{
 		if (component->OnCreate() == false)
@@ -35,14 +35,14 @@ bool Actor::OnCreate()
 
 void Actor::OnDestroy() 
 {
-	Debug::Info("Deleting assets for Actor: ", __FILE__, __LINE__);
+	//Debug::Info("Deleting assets for Actor: ", __FILE__, __LINE__);
 	RemoveAllComponents();
 	isCreated = false;
 }
 
 void Actor::Update(const float deltaTime) 
 {
-	std::cout << "Hello from Update\n";
+	//std::cout << "Hello from Update\n";
 }
 
 void Actor::Render() const 

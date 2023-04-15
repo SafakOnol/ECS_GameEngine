@@ -19,7 +19,7 @@
 #include <vector>
 
 Scene2::Scene2():camera(nullptr), light(nullptr)  {
-	glGetIntegerv(GL_VIEWPORT, viewport); // Get the viewport size
+	//glGetIntegerv(GL_VIEWPORT, viewport); // Get the viewport size
 
 	Debug::Info("Created Scene2: ", __FILE__, __LINE__);
 }
@@ -43,7 +43,6 @@ bool Scene2::OnCreate() {
 
 	// Board 
 	shared_ptr<Actor>checkerBoard = shared_ptr<Actor>(new Actor(nullptr));
-	//checkerBoard = std::make_shared<Actor>(nullptr);
 	checkerBoard->AddComponent<MeshComponent>(nullptr, "meshes/Plane.obj");
 	checkerBoard->AddComponent<TransformComponent>(nullptr, Vec3(0, 0, 0), Quaternion(QMath::angleAxisRotation(0, Vec3(1.0, 0.0f, 0.0f))), Vec3(1.0f, 1.0f, 1.0f));
 	checkerBoard->AddComponent<MaterialComponent>(nullptr, "textures/8x8_checkered_board.png");
@@ -94,7 +93,7 @@ bool Scene2::OnCreate() {
 			boardPosition[i][j] = Vec3(x, y, z);
 			char col = 'A' + j;
 			int row = 8 - i;
-			//std::cout << col << row << " ";
+			std::cout << col << row << " ";
 
 			if ((i % 2 == 0 && j % 2 == 1) || (i % 2 == 1 && j % 2 == 0)) // place the checkers according to rules of the game
 			{
@@ -122,7 +121,7 @@ bool Scene2::OnCreate() {
 				//std::cin.get();
 			}
 		}
-		//std::cout << std::endl;
+		std::cout << std::endl;
 		
 	};
 
@@ -200,7 +199,7 @@ void Scene2::Render() const {
 	for (auto actor : actors) 
 	{
 		glUseProgram(actor->GetComponent<ShaderComponent>()->GetProgram());
-		glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
+		//glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
 		glUniformMatrix4fv(actor->GetComponent<ShaderComponent>()->GetUniformID("modelMatrix"), 1, GL_FALSE, actor->GetModelMatrix());
 		glUniform3fv(actor->GetComponent<ShaderComponent>()->GetUniformID("lightPos"), 1, light->GetPosition());
 		glBindTexture(GL_TEXTURE_2D, actor->GetComponent<MaterialComponent>()->GetTextureID());
@@ -209,45 +208,7 @@ void Scene2::Render() const {
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUseProgram(0);
-
-	/*if (drawOverlay)
-	{
-		DrawMeshOverlay(1.0f, 1.0f, 1.0f, 0.5f)
-	}*/
 }
-
-//void Scene2::DrawMeshOverlay(float r, float g, float b, float a) const
-//{
-//	glDisable(GL_DEPTH_TEST);
-//	glClearColor(r, g, b, a);
-//	glClear(GL_COLOR_BUFFER_BIT);
-//	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
-//	glUseProgram(shaderPointer->GetProgram());
-//	glUniformMatrix4fv(shaderPointer->GetUniformID("modelMatrix"), 1, GL_FALSE, checkerBoard->GetModelMatrix());
-//	checkerBoardMesh->Render(GL_TRIANGLES);
-//	glUseProgram(0);
-//}
-
-//int Scene2::Pick(int x, int y)
-//{
-//	//shared_ptr<ShaderComponent> shaderPointer = shared_ptr<ShaderComponent>(new ShaderComponent(nullptr, "shaders/colorPickingVert.glsl", "shaders/colorPickingFrag.glsl"));
-//
-//	glDisable(GL_DEPTH_TEST); // Disable depth testing so that we can pick the object in front
-//	glClearColor(1.0f, 1.0f, 1.0f, 0.0f); /// Paint the backgound white which is 0x00FFFFFF
-//	glClear(GL_COLOR_BUFFER_BIT); /// Clear the color buffer
-//	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID()); /// Bind the camera matrices
-//	// get shader from Asset Manager	
-//	glUseProgram(shaderPointer->GetProgram());
-//	/// Draw your stuff here
-//	glUseProgram(0);
-//
-//	GLuint colorIndex;
-//	glReadPixels(x, viewport.height - y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &colorIndex);
-//	colorIndex &= 0x00FFFFFF; /// This zeros out the alpha component
-//
-//	if (colorIndex == 0x00FFFFFF) return -1; /// Picked nothing
-//	else return colorIndex;
-//}
 
 
 	

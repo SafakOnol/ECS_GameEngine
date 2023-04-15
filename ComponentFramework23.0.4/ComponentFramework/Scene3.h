@@ -3,7 +3,9 @@
 #include "Scene.h"
 #include <Vector.h>
 #include <Matrix.h>
-#include <QMath.h>
+#include "AssetManager.h"
+#include "Component.h"
+
 using namespace MATH;
 
 /// Forward declarations 
@@ -17,9 +19,14 @@ private:
 	CameraActor* camera;
 	LightActor* light;
 
-	Actor* checkerBoard;
-	Actor* checkerPiece;
+	Ref<AssetManager> assetManager;
+	Ref<CameraActor> cameraActor;
+	Ref<LightActor> lightActor;
+	Ref<Actor> checkerBoard;
+	Ref<Actor> checkerPiece;
 
+	bool drawNormals;
+	bool drawMeshOverlay;
 
 public:
 	explicit Scene3();
@@ -30,8 +37,10 @@ public:
 	virtual void Update(const float deltaTime);
 	virtual void Render() const;
 	virtual void HandleEvents(const SDL_Event &sdlEvent);
-	void DrawMeshOverlay(float r, float g, float b, float a) const;
-	int Pick(int x, int y);
+
+	void DrawMeshOverlay(const Vec4 color) const; 
+	void DrawNormals(const Vec4 color) const;
+	int Pick(int x, int y); 
 
 	
 };
