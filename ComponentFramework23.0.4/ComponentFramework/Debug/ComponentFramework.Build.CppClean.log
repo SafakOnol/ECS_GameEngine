@@ -1,17 +1,3 @@
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\vc143.pdb
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\vc143.idb
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\window.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\transformcomponent.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\timer.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\shadercomponent.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\scene0.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\main.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\scenemanager.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\meshcomponent.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\materialcomponent.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\lightactor.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\debug.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\actor.obj
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\vc143.pdb
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\vc143.idb
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\window.obj
@@ -21,14 +7,16 @@ c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componen
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\scene0.obj
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\main.obj
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\scenemanager.obj
+c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\scene3.obj
+c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\scene2.obj
+c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\scene1.obj
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\meshcomponent.obj
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\materialcomponent.obj
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\lightactor.obj
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\debug.obj
+c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\cameraactor.obj
+c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\assetmanager.obj
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\actor.obj
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\debug\componentframework.exe
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\componentframework\debug\componentframework.ilk
-c:\users\onols\desktop\sem4\game 258 - engine 4_rebirth\componentframework23.0.4\debug\componentframework.pdb
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\debug\componentframework.exe
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\componentframework\debug\componentframework.ilk
 c:\users\onols\documents\github\ecs_gameengine\componentframework23.0.4\debug\componentframework.pdb
