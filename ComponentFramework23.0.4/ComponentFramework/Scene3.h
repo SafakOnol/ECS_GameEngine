@@ -5,6 +5,7 @@
 #include <Matrix.h>
 #include "AssetManager.h"
 #include "Component.h"
+#include <iostream>
 
 using namespace MATH;
 
@@ -24,6 +25,28 @@ private:
 	Ref<LightActor> lightActor;
 	Ref<Actor> checkerBoard;
 	Ref<Actor> checkerPiece;
+
+	// checker board tile setup
+	// create a vector to hold positions for each square in board
+
+	std::vector<std::vector<Vec3>> boardPosition = std::vector<std::vector<Vec3>>(8, std::vector<Vec3>(8));
+
+
+	
+	struct Tile 
+	{
+		Vec3 topLeft;
+		Vec3 topRight;
+		Vec3 bottomLeft;
+		Vec3 bottomRight;
+		bool isOccupied = false;
+	};
+
+	Tile boardTiles[8][8];
+
+	char tileColChar;
+	int tileCol;
+	int tileRow;
 
 	bool drawNormals;
 	bool drawMeshOverlay;

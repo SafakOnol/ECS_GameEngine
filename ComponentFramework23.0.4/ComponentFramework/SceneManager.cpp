@@ -76,7 +76,7 @@ void SceneManager::HandleEvents() {
 		else if (sdlEvent.type == SDL_KEYDOWN) {
 			switch (sdlEvent.key.keysym.scancode) {
 			case SDL_SCANCODE_ESCAPE:
-			case SDL_SCANCODE_Q:
+			//case SDL_SCANCODE_Q:
 				isRunning = false;
 				return;
 				[[fallthrough]]; /// C17 Prevents switch/case fallthrough warnings
