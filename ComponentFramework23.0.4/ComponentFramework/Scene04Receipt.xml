@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Scene0>
+    <Camera> 
+  	  <Location x="0.0" y="0.0" z="0.0" w="0.0"/>
+  	  <Orientation yaw="0.0" pitch="0.0" roll="0.0"/>
+      <Projection fovy="0.0" near="0.0" far="0.0"/>
+  	  <Skybox></Skybox>
+    </Camera>
+    
+    <Light>
+      <Location x="0.0" y="0.0" z="0.0" w="0.0"/>
+      <Diffuse red="0.5" green="0.4" blue="0.3" alpha="0.2"/>
+      <Ambient red="0.5" green="0.4" blue="0.3" alpha="0.2"/> 
+      <Specular red="0.5" green="0.4" blue="0.3" alpha="0.2"/>
+    </Light>
+    
+    <Emission red="0.0" green="0.0" blue="0.0" alpha="0.0"/>
+    
+    <Entity>
+      <Mesh meshname="Mario" filename="meshes/Mario.obj"/>
+      <Texture textureName="MarioMime" filename="textures/Mario_mime.png"/>
+      <Location x="0.0" y="0.0" z="0.0" w="0.0"/>
+      <Orientation yaw="0.0" pitch="0.0" roll="0.0"/>
+    </Entity> 
+    
+   </Scene0>
+
+
+  <Scene1>
+    <Camera>
+      <Location x="3.0" y="2.0" z="1.0" w="0.0"/>
+      <Orientation yaw="1.0" pitch="2.0" roll="3.0"/>
+      <Projection fovy="0.0" near="0.0" far="0.0"/>
+      <Skybox></Skybox>
+    </Camera>
+
+    <Light>
+      <Location x="0.0" y="0.0" z="0.0" w="0.0"/>
+      <Diffuse red="0.5" green="0.4" blue="0.3" alpha="0.2"/>
+      <Ambient red="0.5" green="0.4" blue="0.3" alpha="0.2"/>
+      <Specular red="0.5" green="0.4" blue="0.3" alpha="0.2"/>
+    </Light>
+
+    <Emission red="0.0" green="0.0" blue="0.0" alpha="0.0"/>
+    
+    <Actor>
+      <Mesh meshname="Mario" filename="meshes/Mario.obj"/>
+      <Material textureName="MarioMime" filename="textures/Mario_mime.png"/>
+      <Location x="0.0" y="0.0" z="0.0" w="0.0"/>
+      <Orientation yaw="0.0" pitch="0.0" roll="0.0"/>
+    </Actor>
+
+  </Scene1>
+</Root>

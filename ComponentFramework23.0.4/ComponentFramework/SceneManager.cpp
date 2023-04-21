@@ -6,6 +6,7 @@
 #include "Scene1.h"
 #include "Scene2.h"
 #include "Scene3.h"
+#include "Scene4.h"
 
 SceneManager::SceneManager(): 
 	currentScene(nullptr), window(nullptr), timer(nullptr),
@@ -80,6 +81,23 @@ void SceneManager::HandleEvents() {
 				isRunning = false;
 				return;
 				[[fallthrough]]; /// C17 Prevents switch/case fallthrough warnings
+
+			case SDL_SCANCODE_F1:
+				BuildNewScene(SCENE_NUMBER::SCENE1);
+				break;
+
+			case SDL_SCANCODE_F2:
+				BuildNewScene(SCENE_NUMBER::SCENE2);
+				break;
+
+			case SDL_SCANCODE_F3:
+				BuildNewScene(SCENE_NUMBER::SCENE3);
+				break;
+
+			case SDL_SCANCODE_F4:
+				BuildNewScene(SCENE_NUMBER::SCENE4);
+				break;
+
 			default:
 				break;
 			}
@@ -120,6 +138,11 @@ void SceneManager::BuildNewScene(SCENE_NUMBER scene) {
 
 	case SCENE_NUMBER::SCENE3:
 		currentScene = new Scene3();
+		status = currentScene->OnCreate();
+		break;
+
+	case SCENE_NUMBER::SCENE4:
+		currentScene = new Scene4();
 		status = currentScene->OnCreate();
 		break;
 

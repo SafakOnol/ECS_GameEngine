@@ -1,3 +1,9 @@
+
+#include <memory>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include "tinyxml2.h"
 #include "AssetManager.h"
 #include "TransformComponent.h"
 #include "MeshComponent.h"
@@ -30,6 +36,11 @@ AssetManager::AssetManager()
 	// Methods
 	OnCreate();
 	ListAllComponents();
+
+
+	// Load XML file
+
+	// add actors??? somehow
 }
 
 AssetManager::~AssetManager()

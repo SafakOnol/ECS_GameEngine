@@ -156,11 +156,13 @@
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Scene3.cpp" />
+    <ClCompile Include="Scene4.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene0.cpp" />
     <ClCompile Include="ShaderComponent.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -176,11 +178,13 @@
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
+    <ClInclude Include="Scene4.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene0.h" />
     <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="tiny_obj_loader.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="UBO_Padding.h" />
