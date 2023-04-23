@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+    <assets>
+		<meshes>
+			<mesh id="Sphere" path="meshes/Sphere.obj" />
+			<mesh id="Cube" path="meshes/Cube.obj" />
+			<mesh id="Mario" path="meshes/Mario.obj" />
+			<mesh id="CheckerBoard" path="meshes/Plane.obj" />
+			<mesh id="CheckerPiece" path="meshes/CheckerPiece.obj" />	
+		</meshes>
+		<shaders>
+			<shader id="DefaultShader" vertex_path="shaders/defaultVert.glsl" fragment_path="shaders/defaultFrag.glsl" />
+			<shader id="ColorPickingShader" vertex_path="shaders/colorPickingVert.glsl" fragment_path="shaders/colorPickingFrag.glsl" />
+			<shader id="TextureShader" vertex_path="shaders/textureVert.glsl" fragment_path="shaders/textureFrag.glsl" />
+		</shaders>
+		<materials>
+			<material id="CheckerBoardTexture" path="textures/8x8_checkered_board.png" />
+			<material id="BlackCheckerTexture" path="textures/blackCheckerPiece.png" />
+			<material id="WhiteCheckerTexture" path="textures/whiteCheckerPiece.png" />
+			<material id="RedCheckerTexture" path="textures/redCheckerPiece.png" />
+		</materials>
+	</assets>
+</Root>

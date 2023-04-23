@@ -3,9 +3,10 @@
 #include "Scene.h"
 #include <Vector.h>
 #include <Matrix.h>
-#include "AssetManager.h"
+#include "AssetManagerXML.h"
 #include "Component.h"
 #include <iostream>
+#include "tinyxml2.h"
 
 using namespace MATH;
 
@@ -20,7 +21,7 @@ private:
 	CameraActor* camera;
 	LightActor* light;
 
-	Ref<AssetManager> assetManager;
+	Ref<AssetManagerXML> assetManagerXML;
 	Ref<CameraActor> cameraActor;
 	Ref<LightActor> lightActor;
 	Ref<Actor> checkerBoard;

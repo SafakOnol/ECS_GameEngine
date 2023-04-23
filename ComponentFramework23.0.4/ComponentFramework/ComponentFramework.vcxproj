@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="AssetManagerXML.cpp" />
     <ClCompile Include="CameraActor.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="LightActor.cpp" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="AssetManagerXML.h" />
     <ClInclude Include="CameraActor.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Debug.h" />
@@ -200,6 +202,9 @@
     <None Include="shaders\defaultVert.glsl" />
     <None Include="shaders\textureFrag.glsl" />
     <None Include="shaders\textureVert.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="assets.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

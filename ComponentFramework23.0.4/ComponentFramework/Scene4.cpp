@@ -32,8 +32,8 @@ bool Scene4::OnCreate() {
 
 	Debug::Info("Loading assets Scene4: ", __FILE__, __LINE__);
 
-	assetManager = std::make_shared<AssetManager>();
-
+	assetManagerXML = std::make_shared<AssetManagerXML>();
+	
 	camera = new CameraActor(nullptr);
 	camera->AddComponent<TransformComponent>(nullptr, Vec3(0.0f, 0.0f, -15.0), Quaternion());
 	camera->OnCreate();
@@ -41,9 +41,9 @@ bool Scene4::OnCreate() {
 	camera->GetViewMatrix().print("ViewMatrix");
 
 	// Board 
-	Ref<ShaderComponent> shaderComponent = assetManager->GetComponent<ShaderComponent>("TextureShader");
-	Ref<MeshComponent> meshComponent = assetManager->GetComponent<MeshComponent>("CheckerBoard");
-	Ref<MaterialComponent> materialComponent = assetManager->GetComponent<MaterialComponent>("CheckerBoardTexture");
+	Ref<ShaderComponent> shaderComponent = assetManagerXML->GetComponent<ShaderComponent>("TextureShader");
+	Ref<MeshComponent> meshComponent = assetManagerXML->GetComponent<MeshComponent>("CheckerBoard");
+	Ref<MaterialComponent> materialComponent = assetManagerXML->GetComponent<MaterialComponent>("CheckerBoardTexture");
 	
 	checkerBoard = std::make_shared<Actor>(nullptr);
 	checkerBoard->AddComponent<MeshComponent>(meshComponent);
@@ -62,9 +62,9 @@ bool Scene4::OnCreate() {
 	// 
 	// Meshes and Textures for Checker Pieces
 	
-	Ref<MeshComponent> checkerPieceMesh = assetManager->GetComponent<MeshComponent>("CheckerPiece");
-	Ref<MaterialComponent> redCheckerPiece = assetManager->GetComponent<MaterialComponent>("RedCheckerTexture");
-	Ref<MaterialComponent> blackCheckerPiece = assetManager->GetComponent<MaterialComponent>("BlackCheckerTexture");
+	Ref<MeshComponent> checkerPieceMesh = assetManagerXML->GetComponent<MeshComponent>("CheckerPiece");
+	Ref<MaterialComponent> redCheckerPiece = assetManagerXML->GetComponent<MaterialComponent>("RedCheckerTexture");
+	Ref<MaterialComponent> blackCheckerPiece = assetManagerXML->GetComponent<MaterialComponent>("BlackCheckerTexture");
 
 	// create a vector to hold positions for each square in board
 	//std::vector<std::vector<Vec3>> boardPosition(8, std::vector<Vec3>(8)); ... // carried to header file to use in other functions
@@ -107,12 +107,6 @@ bool Scene4::OnCreate() {
 			//std::cout << tileCol << tileRow << " ";
 			//std::cout << i << j << " ";
 
-			// print the position of each square in the board
-			/*std::cout << "Tile " << tileColChar << tileRow << " Top Left: (" << boardTiles[i][j].topLeft.x << ", " << boardTiles[i][j].topLeft.y << ", " << boardTiles[i][j].topLeft.z << ") " << std::endl;
-			std::cout << "Tile " << tileColChar << tileRow << " Top Right: (" << boardTiles[i][j].topLeft.x << ", " << boardTiles[i][j].topLeft.y << ", " << boardTiles[i][j].topLeft.z << ") " << std::endl;
-			std::cout << "Tile " << tileColChar << tileRow << " Bottom Left: (" << boardTiles[i][j].topLeft.x << ", " << boardTiles[i][j].topLeft.y << ", " << boardTiles[i][j].topLeft.z << ") " << std::endl;
-			std::cout << "Tile " << tileColChar << tileRow << " Bottom Right: (" << boardTiles[i][j].topLeft.x << ", " << boardTiles[i][j].topLeft.y << ", " << boardTiles[i][j].topLeft.z << ") " << std::endl;
-			std::cout << std::endl;*/
 
 			if ((i % 2 == 0 && j % 2 == 1) || (i % 2 == 1 && j % 2 == 0)) // place the checkers according to rules of the game
 			{
@@ -149,20 +143,6 @@ bool Scene4::OnCreate() {
 		
 	};
 
-	//std::cin.get();
-	// print the Poistion of the squares
-
-	//for (int i = 0; i < BOARD_SIZE; i++) 
-	//{
-	//	for (int j = 0; j < BOARD_SIZE; j++) 
-	//	{
-	//		char col = 'A' + j;	
-	//		int row = 8 - i;
-	//		std::cout << col << row << " " << boardPosition[i][j].x << ", " << boardPosition[i][j].y << ", " << boardPosition[i][j].z << std::endl;
-	//	}
-	//	//std::cin.get();
-	//};
-
 	return true;
 
 }
@@ -179,27 +159,12 @@ void Scene4::OnDestroy() {
 
 void Scene4::HandleEvents(const SDL_Event &sdlEvent) {
 
-	//SDL_SetRelativeMouseMode(SDL_TRUE); // lock the mouse to the window
-	// get mouse position relative to the window
-	//int mouseX, mouseY;
-	//Uint32 mouseRelativePos;
-	//mouseRelativePos = SDL_GetMouseState(&mouseX, &mouseY);
-
 	float mouseSensitivity = 0.02f; // TODO : LERP IT!
 	float mouseRelX = sdlEvent.motion.xrel * mouseSensitivity;
 	float mouseRelY = sdlEvent.motion.yrel * mouseSensitivity;
-	//std::cout << "Mouse X: " << mouseRelX << " Mouse Y: " << mouseRelY << std::endl;
-	//SDL_GetRelativeMouseState(&mouseRelX, &mouseRelY);
-
 
 	static int objID = -1;
-	//static Vec2 currentMousePos;
-	//static Vec2 lastMousePos;
-	//static float flip = 1.0f;
-	//Ref<TransformComponent> cameraTC; // camera transform component
-	//Ref<TransformComponent> checkerBoardTC = checkerBoard->GetComponent<TransformComponent>(); // object transform component
-
-
+	
 	switch (sdlEvent.type)
 	{
 		// scotss code...
@@ -300,6 +265,7 @@ void Scene4::HandleEvents(const SDL_Event &sdlEvent) {
 		pos.y -= mouseRelY;
 		pos.z = 0.3f;
 
+
 		// compare position to tile positions
 		// if within range, snap to tile position
 		// if not, move freely
@@ -377,15 +343,39 @@ void Scene4::HandleEvents(const SDL_Event &sdlEvent) {
 					pos.z = 0.0f;
 
 					actors[objID]->GetComponent<TransformComponent>()->SetPosition(pos);
-					//if (!boardTiles[i][j].isOccupied)
-					//{
-					//	//actors[objID]->GetComponent<TransformComponent>()->SetPosition(pos);
-					//}
 
-					//else
-					//{
-					//	// TODO : check color, act accordingly
-					//}
+					// TODO : 
+					// 
+					// CLEAN AND REFACTOR THE CODE! 
+					// 
+					// set tile state as enum: empty, red, black
+					// set the rules of the game
+					// add score
+					// add win condition
+					// add turn counter
+					// add turn indicator
+					// add reset button
+					// add quit button
+					// add menu
+					// add music
+					// add sound effects
+					// add light effects (per tile)
+					// add move animation
+					// add camera animation
+					// add camera zoom
+					// add camera pan
+					// add camera rotation
+					// add animation after capture
+					// add animation after win
+					// add animation after lose
+					// add animation after draw
+					// add animation after reset
+					// add animation after quit
+					// add animation after menu
+					// add animation after turn
+					// add animation after score
+					// add animation after move		
+
 				}
 			}
 		}
@@ -445,7 +435,7 @@ void Scene4::DrawMeshOverlay(const Vec4 color) const
 	glEnable(GL_CULL_FACE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
-	Ref<ShaderComponent> shaderComponent = assetManager->GetComponent<ShaderComponent>("DefaultShader");
+	Ref<ShaderComponent> shaderComponent = assetManagerXML->GetComponent<ShaderComponent>("DefaultShader");
 	glUseProgram(shaderComponent->GetProgram());
 	glUniform4fv(shaderComponent->GetUniformID("color"), 1, color);
 	for (auto actor : actors)
@@ -461,7 +451,7 @@ void Scene4::DrawNormals(const Vec4 color) const
 {
 	//float r, float g, float b, float a
 	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
-	Ref<ShaderComponent> shaderComponent = assetManager->GetComponent<ShaderComponent>("NormalShader");
+	Ref<ShaderComponent> shaderComponent = assetManagerXML->GetComponent<ShaderComponent>("NormalShader");
 	glUseProgram(shaderComponent->GetProgram());
 	glUniform4fv(shaderComponent->GetUniformID("color"), 1, color);
 	for (auto actor : actors)
@@ -477,7 +467,7 @@ int Scene4::Pick(int x, int y)
 	glDisable(GL_DEPTH_TEST); // Disable depth testing so that we can pick the object in front
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f); /// Paint the backgound white which is 0x00FFFFFF
 	glClear(GL_COLOR_BUFFER_BIT); /// Clear the color buffer
-	Ref<ShaderComponent> shaderComponent = assetManager->GetComponent<ShaderComponent>("ColorPickingShader");
+	Ref<ShaderComponent> shaderComponent = assetManagerXML->GetComponent<ShaderComponent>("ColorPickingShader");
 	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID()); /// Bind the camera matrices
 	glUseProgram(shaderComponent->GetProgram()); /// Use the color picking shader
 	/// Draw your stuff here
@@ -485,7 +475,7 @@ int Scene4::Pick(int x, int y)
 
 	for (GLuint i = 0; i < actors.size(); i++)
 	{
-		glUniformMatrix4fv(assetManager->GetComponent<ShaderComponent>("ColorPickingShader")
+		glUniformMatrix4fv(assetManagerXML->GetComponent<ShaderComponent>("ColorPickingShader")
 			->GetUniformID("modelMatrix"), 1, GL_FALSE, actors[i]->GetModelMatrix());
 		glUniform1ui(shaderComponent->GetUniformID("colorID"), i); /// Set the color index (1, 2, 3, 4, etc)
 		actors[i]->GetComponent<MeshComponent>()->Render(GL_TRIANGLES); /// Draw the object with the color index]

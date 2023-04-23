@@ -18,7 +18,7 @@ Actor::~Actor()
 
 bool Actor::OnCreate() 
 {
-	if (isCreated) return true;
+	//if (isCreated) return true;
 	//Debug::Info("Loading assets for Actor: ", __FILE__, __LINE__);
 	for (auto component : components) 
 	{

@@ -1,5 +1,4 @@
-﻿  AssetManager.cpp
-  Scene4.cpp
+﻿  Scene4.cpp
 C:\GameDev\MathLibrary\include\MMath.h(18,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\GameDev\MathLibrary\include\MMath.h(19,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\GameDev\MathLibrary\include\MMath.h(49,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -15,17 +14,4 @@ C:\GameDev\MathLibrary\include\AAMath.h(17,28): warning C4244: 'argument': conve
 C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Scene4.cpp(58,101): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Scene4.cpp(86,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\ComponentFramework\Scene4.cpp(87,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  SceneManager.cpp
-C:\GameDev\MathLibrary\include\MMath.h(18,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\MMath.h(19,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\MMath.h(49,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(86,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(87,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(88,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(89,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(90,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(91,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(103,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  tinyxml2.cpp
-  Generating Code...
   ComponentFramework.vcxproj -> C:\Users\onols\Documents\GitHub\ECS_GameEngine\ComponentFramework23.0.4\Debug\ComponentFramework.exe
